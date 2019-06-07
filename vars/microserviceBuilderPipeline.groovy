@@ -517,6 +517,7 @@ def initalizeHelm () {
 */
 
 def giveRegistryAccessToNamespace (String namespace, String registrySecret) {
+  print "giveRegistryAccessToNamespace: Registry secret : ${registrySecret} : Namespace : ${namespace}"	
   sh "kubectl get secret ${registrySecret} -o json | sed 's/\"namespace\":.*\$/\"namespace\": \"${namespace}\",/g' | kubectl create -f -"
   sh "kubectl patch serviceaccount default -p '{\"imagePullSecrets\": [{\"name\": \"${registrySecret}\"}]}' --namespace ${namespace}"
 }
