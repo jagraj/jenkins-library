@@ -299,9 +299,10 @@ def call(body) {
       if (fileExists(chartFolder)) {
         // find the likely chartFolder location
         realChartFolder = getChartFolder(userSpecifiedChartFolder, chartFolder)
-        def yamlContent = "image:"
-        yamlContent += "\n  repository: ${registry}${image}"
-        if (imageTag) yamlContent += "\n  tag: \\\"${imageTag}\\\""
+        def yamlContent = "ibm-websphere-liberty:"
+	yamlContent += "\n  image:"      
+        yamlContent += "\n    repository: ${registry}${image}"
+        if (imageTag) yamlContent += "\n    tag: \\\"${imageTag}\\\""
         sh "echo \"${yamlContent}\" > pipeline.yaml"
       }
 
